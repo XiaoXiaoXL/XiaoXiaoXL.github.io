@@ -1,116 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="">	
 <head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8"/>
+	<title>JSON Web Token - Lucky Star</title>	
 
-    <title>潇潇的技术博客</title>
-
-    <link rel="stylesheet" href="/theme/css/normalize.css" />
-    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="/theme/css/style.css" />
-    <link rel="stylesheet" href="/theme/css/pygments.css" />	
-    <script src="/theme/js/modernizr.js"></script>
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="JSON Web Token" />
+	<meta name="date" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:title" content="JSON Web Token" />
+	<meta property="og:url" content="/my-super-post.html" />
+	<meta property="og:description" content="pip install pyjwt j：json格式 w：web t：token值（加密为HS256) json web token全称。可以保证安全传输的前提下传送一些基本的信息，以减轻对外部存储的依赖，减少了分布式组件的依赖，减少了硬件的资源。 可实现无状态、分布式的Web应用授权，jwt的安全特性保证了token的不可伪造和不可篡改。 缺点： JWT在生成token的时候支持失效时间，但是支持的失效时间是固定的，比如说一天。 但是用户在等出的时候是随机触发的，那么我们jwt token来做这个失效是不可行的，因为jwt在初始化的时候已经定死在什么时候过期了。 采用其他方案，在redis中存储token，设置token的过期时间，每次鉴权的时候都会去延长时间 2）jwt不适合存放大量信息，信息越多token越长 优点： 性能问题。 JWT方式将用户状态分散到了客户端中，相比于session，可以明显减轻服务端的内存压力。 Session方式存储用户id的最大弊病在于Session是存储在服务器端的，所以需要占用大量服务器内存， 对于较大型应用而言可能还要保存许多的状态，一般还需借助nosql和缓存机制来实现session的存储，如果是分布式应用还需session共享。 单点登录。 JWT能轻松的实现单点登录，因为用户的状态已经被传送到了客户端。 token 可保存自定义信息 …" />
+	<meta name="description" content="pip install pyjwt j：json格式 w：web t：token值（加密为HS256) json web token全称。可以保证安全传输的前提下传送一些基本的信息，以减轻对外部存储的依赖，减少了分布式组件的依赖，减少了硬件的资源。 可实现无状态、分布式的Web应用授权，jwt的安全特性保证了token的不可伪造和不可篡改。 缺点： JWT在生成token的时候支持失效时间，但是支持的失效时间是固定的，比如说一天。 但是用户在等出的时候是随机触发的，那么我们jwt token来做这个失效是不可行的，因为jwt在初始化的时候已经定死在什么时候过期了。 采用其他方案，在redis中存储token，设置token的过期时间，每次鉴权的时候都会去延长时间 2）jwt不适合存放大量信息，信息越多token越长 优点： 性能问题。 JWT方式将用户状态分散到了客户端中，相比于session，可以明显减轻服务端的内存压力。 Session方式存储用户id的最大弊病在于Session是存储在服务器端的，所以需要占用大量服务器内存， 对于较大型应用而言可能还要保存许多的状态，一般还需借助nosql和缓存机制来实现session的存储，如果是分布式应用还需session共享。 单点登录。 JWT能轻松的实现单点登录，因为用户的状态已经被传送到了客户端。 token 可保存自定义信息 …" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
 </head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>JSON Web Token</h1>
+			<p><code>pip install pyjwt</code></p>
+<p>j：json格式    w：web   t：token值（加密为HS256)</p>
+<p>json web token全称。可以保证安全传输的前提下传送一些基本的信息，以减轻对外部存储的依赖，减少了分布式组件的依赖，减少了硬件的资源。</p>
+<p>可实现无状态、分布式的Web应用授权，jwt的安全特性保证了token的不可伪造和不可篡改。</p>
+<h2>缺点：</h2>
+<blockquote>
+<p>JWT在生成token的时候支持失效时间，但是支持的失效时间是固定的，比如说一天。 但是用户在等出的时候是随机触发的，那么我们jwt token来做这个失效是不可行的，因为jwt在初始化的时候已经定死在什么时候过期了。 采用其他方案，在redis中存储token，设置token的过期时间，每次鉴权的时候都会去延长时间 
+    2）jwt不适合存放大量信息，信息越多token越长</p>
+</blockquote>
+<h2>优点：</h2>
+<blockquote>
+<p>性能问题。 JWT方式将用户状态分散到了客户端中，相比于session，可以明显减轻服务端的内存压力。 Session方式存储用户id的最大弊病在于Session是存储在服务器端的，所以需要占用大量服务器内存， 对于较大型应用而言可能还要保存许多的状态，一般还需借助nosql和缓存机制来实现session的存储，如果是分布式应用还需session共享。
+单点登录。 JWT能轻松的实现单点登录，因为用户的状态已经被传送到了客户端。 token 可保存自定义信息，如用户基本信息，web服务器用key去解析token，就获取到请求用户的信息了。 我们也可以配置它以便包含用户拥有的任何权限。这意味着每个服务不需要与授权服务交互才能授权用户。
+前后端分离。 以前的传统模式下，后台对应的客户端就是浏览器，就可以使用session+cookies的方式实现登录， 但是在前后分离的情况下，后端只负责通过暴露的RestApi提供数据，而页面的渲染、路由都由前端完成。因为rest是无状态的，因此也就不会有session记录到服务器端。
+兼容性。 支持移动设备，支持跨程序调用，Cookie 是不允许垮域访问的，而 Token 则不存在这个问题。
+可拓展性。 jwt是无状态的，特别适用于分布式站点的单点登录（SSO）场景。 比如有3台机器（A、B、C）组成服务器集群，若session存在机器A上，session只能保存在其中一台服务器，此时你便不能访问机器B、C，因为B、C上没有存放该Session， 而使用token就能够验证用户请求合法性，并且我再加几台机器也没事，所以可拓展性好。
+安全性。因为有签名，所以JWT可以防止被篡改。</p>
+</blockquote>
+<h2>操作：</h2>
+<p>生成token值
+encoded_jwt = jwt.encode({'username':username},jwt_code,algorithm='HS256')
+token = encoded_jwt.decode()</p>
+<p>解码token值
+de_token = jwt.decode(token,jwt_code,algorithms=['HS256'])</p>
+<p>存入Local Storage中：
+localStorage.setItem('user',result.data.token)</p>
+<p>取值：
+var token = localStorage.getItem('user')</p>
 
-<body>
-
-<!-- Nav Bar -->
-<nav>
-<div class="top-bar">
-<div class="row">
-    <div class="large-9 large-centered columns">
-	    <h1><a href="">潇潇的技术博客</a></h1>
-    </div>
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2019-08-08T10:20:00+02:00" pubdate>周四 08 八月 2019</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/ji-zhu.html">技术</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/publishing.html">publishing</a></li>
+	</ul>
+</div>	</article>	
 </div>
-</div>
-
-<!-- Show menu items and pages -->
-<div class="row">
-<div class="large-9 columns">
-    <ul class="button-group navigation">
-
-    </ul>
-</div>
-</div>
-</nav>
-<!-- End Nav -->
-
-
-<!-- Main Page Content and Sidebar -->
-<div class="row">
-
-    <!-- Main Blog Content -->
-    <div class="large-9 columns">
-<article>
-    <header>
-        <h3 class="article-title"><a href="/my-super-post.html" rel="bookmark"
-        title="Permalink to 潇潇的技术博客">潇潇的技术博客</a></h3>
-    </header>
-
-<h6 class="subheader" title="2019-08-08T10:20:00+02:00">周四 08 八月 2019
-</h6>
-
-
-    <p>这是我的第一篇文章</p>
-<p class="subheader">Category: <a href="/category/ji-zhu.html">技术</a>
-
-    Tagged: 
-    <a href="/tag/pelican.html">pelican </a>
-    <a href="/tag/publishing.html">publishing </a>
-</p>
-
-
-
-
-</article>
-    </div>
-    <!-- End Main Content -->
-
-    <!-- Sidebar -->
-    <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
-        <ul class="side-nav">
-            <li><a href="/archives.html">Archives</a>
-            <li><a href="/tags.html">Tags</a>
-        </ul>
-
+	
 		
-        <h5 class="sidebar-title">Categories</h5>
-        <ul class="side-nav">
-            <li><a href="/category/ji-zhu.html">技术</a></li>
-   
-        </ul>
-
-        <h5 class="sidebar-title">Links</h5>
-        <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
-        </ul>
-		
-        <h5 class="sidebar-title">Social</h5>
-        <ul class="side-nav">
-            <li><a href="#">You can add links in your config file</a></li>
-            <li><a href="#">Another social link</a></li>
-        </ul>
-
-    </aside> <!-- End Sidebar -->
-
-</div> <!-- End Main Content and Sidebar -->
-
-
-<!-- Footer -->
-<footer class="row">
-    <div class="large-12 columns">
-        <hr />
-        <div class="row">
-            <div class="large-6 columns">
-              <!--                  <p>潇潇的技术博客 by 潇潇</p> -->
-            </div>
-            </div>
-    </div>
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
 </footer>
 </body>
 </html>

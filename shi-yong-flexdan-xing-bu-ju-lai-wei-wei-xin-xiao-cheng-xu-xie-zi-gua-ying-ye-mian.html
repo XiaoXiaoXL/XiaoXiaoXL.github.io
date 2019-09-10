@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>使用flex弹性布局来为微信小程序写自适应页面 - Lucky Star</title>	
+
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="使用flex弹性布局来为微信小程序写自适应页面" />
+	<meta name="date" content="2019-08-10 20:44:20+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2019-08-10 20:44:20+02:00" />
+	<meta property="og:title" content="使用flex弹性布局来为微信小程序写自适应页面" />
+	<meta property="og:url" content="/shi-yong-flexdan-xing-bu-ju-lai-wei-wei-xin-xiao-cheng-xu-xie-zi-gua-ying-ye-mian.html" />
+	<meta property="og:description" content="​ 我们知道，写习惯了前端的人，一般切图后布局页面的话，上手最习惯的是基于盒子模型的浮动布局，依赖 display 属性 + position属性 + float属性，但是浮动布局有一些致命的小问题，比如垂直居中比较费劲，比如著名的float坍塌问题，另外有些极端情况下，还得使用模型+clear:both来手动清除浮动，比较麻烦。 ​ 于是，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能，本人在微信小程序页面中尝试了一下弹性布局，个人感觉是：简直太好用了。 ​ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。 ​ 任何一个容器都可以指定为 Flex 布局。 .box{ display: flex; } ​ 不过需要注意一点，就是设为 Flex 布局以后 …" />
+	<meta name="description" content="​ 我们知道，写习惯了前端的人，一般切图后布局页面的话，上手最习惯的是基于盒子模型的浮动布局，依赖 display 属性 + position属性 + float属性，但是浮动布局有一些致命的小问题，比如垂直居中比较费劲，比如著名的float坍塌问题，另外有些极端情况下，还得使用模型+clear:both来手动清除浮动，比较麻烦。 ​ 于是，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能，本人在微信小程序页面中尝试了一下弹性布局，个人感觉是：简直太好用了。 ​ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。 ​ 任何一个容器都可以指定为 Flex 布局。 .box{ display: flex; } ​ 不过需要注意一点，就是设为 Flex 布局以后 …" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>使用flex弹性布局来为微信小程序写自适应页面</h1>
+			<p>​   我们知道，写习惯了前端的人，一般切图后布局页面的话，上手最习惯的是基于盒子模型的浮动布局，依赖 display 属性 + position属性 + float属性，但是浮动布局有一些致命的小问题，比如垂直居中比较费劲，比如著名的<a href="https://v3u.cn/a_id_18">float坍塌问题</a>，另外有些极端情况下，还得使用模型+clear:both来手动清除浮动，比较麻烦。</p>
+<p>​   于是，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能，本人在微信小程序页面中尝试了一下弹性布局，个人感觉是：简直太好用了。</p>
+<p>​   Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。</p>
+<p>​   任何一个容器都可以指定为 Flex 布局。</p>
+<div class="highlight"><pre><span></span><span class="na">.box</span><span class="err">{</span>
+  <span class="nl">display:</span> <span class="nf">flex</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>​   不过需要注意一点，就是设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。也就是说浮动布局和弹性布局不可共存，二者必居其一。</p>
+<p>​   其实flex布局原理很简单，采用 Flex 布局的元素，称为 Flex 容器（flex container），简称"容器"。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称"项目"。</p>
+<p>​   容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p>
+<p>​   项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
+<p><img alt="img" src="https://v3u.cn/v3u/Public/js/editor/attached/image/20190903/20190903092949_52083.png"> </p>
+<p>​   弹性布局的容器可以设置下面这些属性： </p>
+<div class="highlight"><pre><span></span><span class="nv">flex</span><span class="o">-</span><span class="nv">direction</span>
+<span class="nv">flex</span><span class="o">-</span><span class="nv">direction</span>属性决定主轴的方向（即项目的排列方向）。
+.<span class="nv">box</span> {
+  <span class="nv">flex</span><span class="o">-</span><span class="nv">direction</span>: <span class="nv">row</span> <span class="o">|</span> <span class="nv">row</span><span class="o">-</span><span class="nv">reverse</span> <span class="o">|</span> <span class="nv">column</span> <span class="o">|</span> <span class="nv">column</span><span class="o">-</span><span class="nv">reverse</span><span class="c1">;</span>
+}
+
+<span class="nv">flex</span><span class="o">-</span><span class="nv">wrap</span>
+默认情况下，项目都排在一条线（又称<span class="s2">&quot;</span><span class="s">轴线</span><span class="s2">&quot;</span>）上。<span class="nv">flex</span><span class="o">-</span><span class="nv">wrap</span>属性定义，如果一条轴线排不下，如何换行。
+.<span class="nv">box</span>{
+  <span class="nv">flex</span><span class="o">-</span><span class="nv">wrap</span>: <span class="nv">nowrap</span> <span class="o">|</span> <span class="nv">wrap</span> <span class="o">|</span> <span class="nv">wrap</span><span class="o">-</span><span class="nv">reverse</span><span class="c1">;</span>
+}
+
+<span class="nv">flex</span><span class="o">-</span><span class="nv">flow</span>
+<span class="nv">flex</span><span class="o">-</span><span class="nv">flow</span>属性是<span class="nv">flex</span><span class="o">-</span><span class="nv">direction</span>属性和<span class="nv">flex</span><span class="o">-</span><span class="nv">wrap</span>属性的简写形式，默认值为<span class="nv">row</span> <span class="nv">nowrap</span>。
+.<span class="nv">box</span> {
+  <span class="nv">flex</span><span class="o">-</span><span class="nv">flow</span>: <span class="o">&lt;</span><span class="nv">flex</span><span class="o">-</span><span class="nv">direction</span><span class="o">&gt;</span> <span class="o">||</span> <span class="o">&lt;</span><span class="nv">flex</span><span class="o">-</span><span class="nv">wrap</span><span class="o">&gt;</span><span class="c1">;</span>
+}
+
+
+<span class="nv">justify</span><span class="o">-</span><span class="nv">content</span>
+<span class="nv">justify</span><span class="o">-</span><span class="nv">content</span>属性定义了项目在主轴上的对齐方式。
+.<span class="nv">box</span> {
+  <span class="nv">justify</span><span class="o">-</span><span class="nv">content</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">between</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">around</span><span class="c1">;</span>
+}
+
+
+<span class="nv">align</span><span class="o">-</span><span class="nv">items</span>
+<span class="nv">align</span><span class="o">-</span><span class="nv">items</span>属性定义项目在交叉轴上如何对齐。
+.<span class="nv">box</span> {
+  <span class="nv">align</span><span class="o">-</span><span class="nv">items</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">baseline</span> <span class="o">|</span> <span class="nv">stretch</span><span class="c1">;</span>
+}
+
+<span class="nv">align</span><span class="o">-</span><span class="nv">content</span>
+<span class="nv">align</span><span class="o">-</span><span class="nv">content</span>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+.<span class="nv">box</span> {
+  <span class="nv">align</span><span class="o">-</span><span class="nv">content</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">between</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">around</span> <span class="o">|</span> <span class="nv">stretch</span><span class="c1">;</span>
+}
+</pre></div>
+
+
+<p>​   说了这么多，都是理论，我们来用弹性布局实战一下，比如我们要模仿瑞辛咖啡小程序中的，首行单列，换行双列，并且自适应整个手机页面的布局 </p>
+<p><img alt="img" src="https://v3u.cn/v3u/Public/js/editor/attached/image/20190903/20190903093515_29325.png"> </p>
+<p>​   页面部分: </p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;template&gt;</span>
+
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container1&quot;</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item11&quot;</span><span class="nt">&gt;</span>
+            1
+            <span class="nt">&lt;/div&gt;</span>
+
+           <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item12&quot;</span><span class="nt">&gt;</span>
+
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item1&quot;</span><span class="nt">&gt;</span>
+                  3
+                  <span class="nt">&lt;/div&gt;</span>
+
+
+                  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item1&quot;</span><span class="nt">&gt;</span>
+                      3
+                      <span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;/div&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item12&quot;</span><span class="nt">&gt;</span>
+
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item1&quot;</span><span class="nt">&gt;</span>
+                    3
+                    <span class="nt">&lt;/div&gt;</span>
+
+
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;item1&quot;</span><span class="nt">&gt;</span>
+                        3
+                        <span class="nt">&lt;/div&gt;</span>
+
+
+            <span class="nt">&lt;/div&gt;</span>
+
+
+
+
+
+
+
+
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/template&gt;</span>
+    css部分:
+
+
+
+.container1{
+  height: 100%;
+  width:100%;
+  background-color:beige;
+  display:flex;
+  flex-flow:column;
+}
+
+
+.item11{
+  height:300rpx;
+  background-color:cyan;
+  border: 1px solid #fff
+}
+
+.item12{
+  height:300rpx;
+  background-color:cyan;
+  border: 1px solid #fff;
+  display:flex;
+}
+
+.item1{
+  height:300rpx;
+  width: 50%;
+  background-color:cyan;
+  border: 1px solid #fff
+}
+</pre></div>
+
+
+<p>​   轻松搞定，代码量比浮动布局少了很多，简直完美。 </p>
+
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2019-08-10T20:44:20+02:00" pubdate>周六 10 八月 2019</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
+</footer>
+</body>
+</html>

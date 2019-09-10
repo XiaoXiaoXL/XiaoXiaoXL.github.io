@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>分享一个QQ第三方登录详解 - Lucky Star</title>	
+
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="分享一个QQ第三方登录详解" />
+	<meta name="date" content="2018-09-09 20:45:34+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2018-09-09 20:45:34+02:00" />
+	<meta property="og:title" content="分享一个QQ第三方登录详解" />
+	<meta property="og:url" content="/fen-xiang-yi-ge-qqdi-san-fang-deng-lu-xiang-jie.html" />
+	<meta property="og:description" content="在web开发过程中，经常会使用到第三方登录的功能，那么今天就详细的分享一下关于QQ的第三方登录。 （本篇后端框架采用的是Tornado框架） 如果阅读理解能力没有问题的情况下，可以详细阅读QQ第三方登录的官方文档： https://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token 首先说明一下，使用QQ第三方登录，必须要有审核通过的域名！！！ 好了，现在该详细介绍具体步骤如何实现了： 第一步： ​ 再前端页面放一个按钮，按钮的样式官方文档上有，可以随意选择，选好按钮以后给按钮一个点击事 ​ 件，向后台发起请求 第二步： ​ 后端接口收到请求后，向 https://graph.qq.com/oauth2.0/authorize 发起requests请求获取 ​ Authorization Code，这里要注意一下，在请求时需要附带必要参数 …" />
+	<meta name="description" content="在web开发过程中，经常会使用到第三方登录的功能，那么今天就详细的分享一下关于QQ的第三方登录。 （本篇后端框架采用的是Tornado框架） 如果阅读理解能力没有问题的情况下，可以详细阅读QQ第三方登录的官方文档： https://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token 首先说明一下，使用QQ第三方登录，必须要有审核通过的域名！！！ 好了，现在该详细介绍具体步骤如何实现了： 第一步： ​ 再前端页面放一个按钮，按钮的样式官方文档上有，可以随意选择，选好按钮以后给按钮一个点击事 ​ 件，向后台发起请求 第二步： ​ 后端接口收到请求后，向 https://graph.qq.com/oauth2.0/authorize 发起requests请求获取 ​ Authorization Code，这里要注意一下，在请求时需要附带必要参数 …" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>分享一个QQ第三方登录详解</h1>
+			<p>在web开发过程中，经常会使用到第三方登录的功能，那么今天就详细的分享一下关于QQ的第三方登录。</p>
+<p>（本篇后端框架采用的是Tornado框架）</p>
+<p>如果阅读理解能力没有问题的情况下，可以详细阅读QQ第三方登录的官方文档：</p>
+<p><a href="https://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token">https://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token</a> </p>
+<p>首先说明一下，使用QQ第三方登录，必须要有审核通过的域名！！！</p>
+<p>好了，现在该详细介绍具体步骤如何实现了：</p>
+<h3>第一步：</h3>
+<p>​       再前端页面放一个按钮，按钮的样式官方文档上有，可以随意选择，选好按钮以后给按钮一个点击事    </p>
+<p>​       件，向后台发起请求</p>
+<h3>第二步：</h3>
+<p>​       后端接口收到请求后，向 https://graph.qq.com/oauth2.0/authorize 发起requests请求获取</p>
+<p>​       Authorization Code，这里要注意一下，在请求时需要附带必要参数，在文档上都有详细介绍</p>
+<p>​       </p>
+<div class="highlight"><pre><span></span><span class="c1"># 获取code url</span>
+<span class="k">class</span> <span class="nc">GetAuthorizationCode</span><span class="p">(</span><span class="n">BaseHandler</span><span class="p">):</span>
+   <span class="n">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://graph.qq.com/oauth2.0/authorize&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;response_type&#39;</span><span class="p">:</span><span class="s1">&#39;code&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;client_id&#39;</span><span class="p">:</span><span class="s1">&#39;101487535&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;redirect_uri&#39;</span><span class="p">:</span><span class="s1">&#39;http://login.yskj599.com/user/login/qq_login&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;state&#39;</span><span class="p">:</span><span class="s1">&#39;101487535&#39;</span>
+        <span class="p">}</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">url</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># 前端页面需要跳转的url地址</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span><span class="n">urls</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+
+
+<p>​       请求后我们可以拿到一个url，这个url就是需要我们返回给前端进行跳转的url地址</p>
+<h3>第三步：</h3>
+<p>​       再跳转至登录页面并登陆时，我们需要先获取到access_token和OpenID，在这里我们可以定义两个函   </p>
+<p>​       数，qq_get_access_token、qq_get_OpenID，具体代码如下：</p>
+<div class="highlight"><pre><span></span><span class="c1"># QQ登录获取access_token</span>
+<span class="k">def</span> <span class="nf">qq_get_access_token</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">app_id</span><span class="p">):</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grant_type&#39;</span><span class="p">:</span> <span class="s1">&#39;authorization_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;client_id&#39;</span><span class="p">:</span> <span class="n">app_id</span><span class="p">,</span>
+        <span class="s1">&#39;client_secret&#39;</span><span class="p">:</span> <span class="s1">&#39;9c383c0a358b3382ed52269ccff3691f&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="n">code</span><span class="p">,</span>
+        <span class="s1">&#39;redirect_uri&#39;</span><span class="p">:</span> <span class="s1">&#39;http://login.yskj599.com/user/login&#39;</span>
+    <span class="p">}</span>
+    <span class="n">access_url</span> <span class="o">=</span> <span class="s1">&#39;https://graph.qq.com/oauth2.0/token&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">access_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">alist</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">access_token</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># QQ登录获取OpenID</span>
+<span class="k">def</span> <span class="nf">qq_get_OpenID</span><span class="p">(</span><span class="n">access_token</span><span class="p">):</span>
+    <span class="n">OpenID_url</span> <span class="o">=</span> <span class="s1">&#39;https://graph.qq.com/oauth2.0/me&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">OpenID_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;access_token&#39;</span><span class="p">:</span> <span class="n">access_token</span><span class="p">})</span>
+    <span class="n">OpenID</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">OpenID</span>
+</pre></div>
+
+
+<p>​       </p>
+<p>​       接下来就非常简单了，我们只需要安装文档的需求，调用我们定义好的函数，并做好业务逻辑的判断就   </p>
+<p>​       ok了！</p>
+<div class="highlight"><pre><span></span><span class="c1">#QQ登录接口</span>
+<span class="k">class</span> <span class="nc">QQLogin</span><span class="p">(</span><span class="n">BaseHandler</span><span class="p">):</span>
+   <span class="n">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">arguments</span>
+        <span class="n">app_id</span> <span class="o">=</span> <span class="s1">&#39;101487535&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="n">access_token</span> <span class="o">=</span> <span class="n">QQ_get_access_token</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">app_id</span><span class="p">)</span>
+            <span class="n">OpenID</span> <span class="o">=</span> <span class="n">QQ_get_OpenID</span><span class="p">(</span><span class="n">access_token</span><span class="p">)</span>
+            <span class="n">params2</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;access_token&#39;</span><span class="p">:</span><span class="n">access_token</span><span class="p">,</span>
+                <span class="s1">&#39;oauth_consumer_key&#39;</span><span class="p">:</span><span class="s1">&#39;101487535&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;openid&#39;</span><span class="p">:</span><span class="n">OpenID</span>
+            <span class="p">}</span>
+            <span class="c1"># QQ返回登录用户的信息</span>
+            <span class="n">get_info_url</span> <span class="o">=</span> <span class="s1">&#39;https://graph.qq.com/user/get_user_info&#39;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">get_info_url</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params2</span><span class="p">)</span>
+            <span class="n">user_info</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="n">nickname</span> <span class="o">=</span> <span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;nickname&#39;</span><span class="p">]</span>
+            <span class="c1"># 拿到用户的nickname后，我们就可以做一些业务逻辑的判断</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">nick</span> <span class="o">==</span> <span class="n">nickname</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:8080?u_name={}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nickname</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">qq_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">nick</span> <span class="o">=</span> <span class="n">nickname</span><span class="p">,</span><span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="n">gender</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">addres</span> <span class="o">=</span><span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;province&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span>
+                               <span class="n">attributes</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="n">is_activates</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">sess</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">qq_user</span><span class="p">)</span>
+                    <span class="n">sess</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:8080?u_name={}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nickname</span><span class="p">))</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;登录失败&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>好了，关于QQ的第三方登录就基本上完成了，是不是很简单呢？</p>
+
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2018-09-09T20:45:34+02:00" pubdate>周日 09 九月 2018</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/misc.html">misc</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
+</footer>
+</body>
+</html>

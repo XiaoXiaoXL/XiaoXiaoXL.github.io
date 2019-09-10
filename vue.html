@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Vue.js渐进式框架。 - Lucky Star</title>	
+
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Vue.js渐进式框架。" />
+	<meta name="date" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:title" content="Vue.js渐进式框架。" />
+	<meta property="og:url" content="/vue.html" />
+	<meta property="og:description" content="Vue 只关注视图层， 采用自底向上增量开发的设计。 Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。 中文文档： https://cn.vuejs.org/v2/guide/syntax.html 安装流程 npm cache clean --force npm set registry https://registry.npmjs.org/ npm install npm -g 安装 vue.js npm install -g vue-cli npm cache clean --force 建立项目 vue init webpack nvue project …" />
+	<meta name="description" content="Vue 只关注视图层， 采用自底向上增量开发的设计。 Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。 中文文档： https://cn.vuejs.org/v2/guide/syntax.html 安装流程 npm cache clean --force npm set registry https://registry.npmjs.org/ npm install npm -g 安装 vue.js npm install -g vue-cli npm cache clean --force 建立项目 vue init webpack nvue project …" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>Vue.js渐进式框架。</h1>
+			<p>Vue 只关注视图层， 采用自底向上增量开发的设计。</p>
+<p>Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</p>
+<p>中文文档：</p>
+<p><a href="https://cn.vuejs.org/v2/guide/syntax.html">https://cn.vuejs.org/v2/guide/syntax.html</a></p>
+<p>安装流程</p>
+<div class="highlight"><pre><span></span><span class="n">npm</span> <span class="k">cache</span> <span class="n">clean</span> <span class="c1">--force</span>
+
+<span class="n">npm</span> <span class="k">set</span> <span class="n">registry</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">registry</span><span class="p">.</span><span class="n">npmjs</span><span class="p">.</span><span class="n">org</span><span class="o">/</span>
+
+<span class="n">npm</span> <span class="n">install</span> <span class="n">npm</span> <span class="o">-</span><span class="k">g</span>
+
+<span class="err">安装</span> <span class="n">vue</span><span class="p">.</span><span class="n">js</span>
+
+<span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="k">g</span> <span class="n">vue</span><span class="o">-</span><span class="n">cli</span>
+
+<span class="n">npm</span> <span class="k">cache</span> <span class="n">clean</span> <span class="c1">--force</span>
+
+<span class="err">建立项目</span>
+<span class="n">vue</span> <span class="n">init</span> <span class="n">webpack</span> <span class="n">nvue</span>
+
+<span class="n">project</span> <span class="n">name</span><span class="err">（项目名称）</span>  <span class="err">按回车</span>
+
+<span class="n">project</span> <span class="n">description</span><span class="err">（项目描述）</span> <span class="err">按回车</span>
+
+<span class="n">author</span><span class="err">（作者）</span> <span class="err">按回车</span>
+
+<span class="n">vue</span> <span class="n">build</span><span class="err">（解释器）</span> <span class="err">按回车</span>
+
+<span class="n">Install</span> <span class="n">vue</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="err">路由</span><span class="p">)</span> <span class="err">按</span><span class="n">y按回车</span>
+
+<span class="n">use</span> <span class="n">aslantto</span> <span class="n">lint</span> <span class="n">your</span> <span class="n">code</span><span class="p">(</span><span class="err">代码检查</span><span class="p">)</span> <span class="err">按</span><span class="n">n按回车</span>
+
+<span class="k">set</span> <span class="n">up</span> <span class="n">unit</span> <span class="n">tests</span><span class="p">(</span><span class="err">测试模块</span><span class="p">)</span> <span class="err">按</span><span class="n">n按回车</span>
+
+<span class="n">setup</span> <span class="n">e2e</span> <span class="n">tests</span> <span class="k">with</span> <span class="n">night</span> <span class="n">watch</span><span class="p">(</span><span class="err">是否安装</span><span class="n">e2e</span><span class="p">)</span> <span class="err">按</span><span class="n">n按回车</span>
+
+<span class="n">should</span> <span class="n">we</span> <span class="n">run</span> <span class="err">’</span><span class="n">npm</span> <span class="n">install</span><span class="err">’</span><span class="p">(</span><span class="err">是否选择</span><span class="n">npm方式</span><span class="p">)</span><span class="err">选第一个，按回车</span>
+
+<span class="n">cd</span> <span class="o">&lt;</span><span class="err">项目名</span><span class="o">&gt;</span>
+
+
+<span class="n">npm</span> <span class="n">install</span> <span class="n">jquery</span> <span class="c1">--save</span>
+
+<span class="n">npm</span> <span class="n">install</span> <span class="n">axios</span> <span class="c1">--save</span>
+
+<span class="n">npm</span> <span class="n">install</span> <span class="n">vue</span><span class="o">-</span><span class="n">resource</span> <span class="err">—</span><span class="o">-</span><span class="n">save</span>
+
+<span class="n">npm</span> <span class="n">install</span>  <span class="n">style</span><span class="o">-</span><span class="n">loader</span> <span class="err">—</span><span class="o">-</span><span class="n">save</span>
+
+<span class="n">npm</span> <span class="n">i</span> <span class="n">element</span><span class="o">-</span><span class="n">ui</span> <span class="o">-</span><span class="n">S</span>
+
+<span class="err">进入项目</span> <span class="err">热启动</span>
+<span class="n">npm</span> <span class="n">run</span> <span class="n">dev</span>
+
+<span class="err">退出服务</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="k">c</span>
+</pre></div>
+
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2019-08-08T10:20:00+02:00" pubdate>周四 08 八月 2019</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/ji-zhu.html">技术</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/publishing.html">publishing</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
+</footer>
+</body>
+</html>

@@ -1,58 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="">	
 <head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8"/>
+	<title>组件传值 - Lucky Star</title>	
 
-    <title>组件传值</title>
-
-    <link rel="stylesheet" href="/theme/css/normalize.css" />
-    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="/theme/css/style.css" />
-    <link rel="stylesheet" href="/theme/css/pygments.css" />	
-    <script src="/theme/js/modernizr.js"></script>
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="组件传值" />
+	<meta name="date" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2019-08-08 10:20:00+02:00" />
+	<meta property="og:title" content="组件传值" />
+	<meta property="og:url" content="/my-Component-Passing-Value.html" />
+	<meta property="og:description" content="1，父传子： 1，在父组件中引入的子组件的标签中传入值 2，在父组件中注册要传的值 3，在子组件中使用props将值传入 2，子传父： 1，在子组件中注册要穿的值 2，使用this给注册的值赋值 3，在子组件中引入的父组件的标签中传入值 4，在父组件中使用props['值']接收值，注：与data同级 5，在父组件中使用传入的值" />
+	<meta name="description" content="1，父传子： 1，在父组件中引入的子组件的标签中传入值 2，在父组件中注册要传的值 3，在子组件中使用props将值传入 2，子传父： 1，在子组件中注册要穿的值 2，使用this给注册的值赋值 3，在子组件中引入的父组件的标签中传入值 4，在父组件中使用props['值']接收值，注：与data同级 5，在父组件中使用传入的值" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
 </head>
-
-<body>
-
-<!-- Nav Bar -->
-<nav>
-<div class="top-bar">
-<div class="row">
-    <div class="large-9 large-centered columns">
-	    <h1><a href="">潇潇的技术博客</a></h1>
-    </div>
-</div>
-</div>
-
-<!-- Show menu items and pages -->
-<div class="row">
-<div class="large-9 columns">
-    <ul class="button-group navigation">
-
-    </ul>
-</div>
-</div>
-</nav>
-<!-- End Nav -->
-
-
-<!-- Main Page Content and Sidebar -->
-<div class="row">
-
-    <!-- Main Blog Content -->
-    <div class="large-9 columns">
-<article>
-    <header>
-        <h3 class="article-title"><a href="/my-Component-Passing-Value.html" rel="bookmark"
-        title="Permalink to 组件传值">组件传值</a></h3>
-    </header>
-
-<h6 class="subheader" title="2019-08-08T10:20:00+02:00">周四 08 八月 2019
-</h6>
-
-
-    <p>1，父传子：</p>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>组件传值</h1>
+			<p>1，父传子：</p>
 <div class="highlight"><pre><span></span><span class="mi">1</span><span class="err">，在父组件中引入的子组件的标签中传入值</span>
 
 <span class="mi">2</span><span class="err">，在父组件中注册要传的值</span>
@@ -72,64 +62,38 @@
 
 <span class="mi">5</span><span class="err">，在父组件中使用传入的值</span>
 </pre></div>
-<p class="subheader">Category: <a href="/category/ji-zhu.html">技术</a>
 
-    Tagged: 
-    <a href="/tag/pelican.html">pelican </a>
-    <a href="/tag/publishing.html">publishing </a>
-</p>
-
-
-
-
-</article>
-    </div>
-    <!-- End Main Content -->
-
-    <!-- Sidebar -->
-    <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
-        <ul class="side-nav">
-            <li><a href="/archives.html">Archives</a>
-            <li><a href="/tags.html">Tags</a>
-        </ul>
-
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2019-08-08T10:20:00+02:00" pubdate>周四 08 八月 2019</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/ji-zhu.html">技术</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/publishing.html">publishing</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
 		
-        <h5 class="sidebar-title">Categories</h5>
-        <ul class="side-nav">
-            <li><a href="/category/ji-zhu.html">技术</a></li>
-   
-        </ul>
-
-        <h5 class="sidebar-title">Links</h5>
-        <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
-        </ul>
-		
-        <h5 class="sidebar-title">Social</h5>
-        <ul class="side-nav">
-            <li><a href="#">You can add links in your config file</a></li>
-            <li><a href="#">Another social link</a></li>
-        </ul>
-
-    </aside> <!-- End Sidebar -->
-
-</div> <!-- End Main Content and Sidebar -->
-
-
-<!-- Footer -->
-<footer class="row">
-    <div class="large-12 columns">
-        <hr />
-        <div class="row">
-            <div class="large-6 columns">
-              <!--                  <p>潇潇的技术博客 by 潇潇</p> -->
-            </div>
-            </div>
-    </div>
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/archives.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
 </footer>
 </body>
 </html>
