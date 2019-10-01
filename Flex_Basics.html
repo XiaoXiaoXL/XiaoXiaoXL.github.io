@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Flex弹性布局 - Lucky Star</title>	
+
+	<meta name="author" content="潇潇" />
+	<meta name="copyright" content="潇潇" />
+	<meta property="og:site_name" content="Lucky Star" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Flex弹性布局" />
+	<meta name="date" content="2017-07-18 13:50:00+02:00" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="zh" />
+	<meta property="og:published_time" content="2017-07-18 13:50:00+02:00" />
+	<meta property="og:title" content="Flex弹性布局" />
+	<meta property="og:url" content="/Flex_Basics.html" />
+	<meta property="og:description" content="1，2009年，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。flex布局又称为flex容器的父容器及其直接子容器（称为flex项）构成。 2，Flex容器的主要特征是能够修改其子节点的宽度或高度，以便以不同屏幕尺寸以最佳方式填充可用空间。 简介 任何一个容器都可以指定为 Flex 布局。 .box{ display: flex; } 行内元素也可以使用 Flex 布局。 .box{ display: inline-flex; } Webkit 内核的浏览器，必须加上-webkit前缀。 .box{ display: -webkit-flex; /* Safari */ display: flex; } 注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。 容器默认存在两根轴：水平的主轴 …" />
+	<meta name="description" content="1，2009年，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。flex布局又称为flex容器的父容器及其直接子容器（称为flex项）构成。 2，Flex容器的主要特征是能够修改其子节点的宽度或高度，以便以不同屏幕尺寸以最佳方式填充可用空间。 简介 任何一个容器都可以指定为 Flex 布局。 .box{ display: flex; } 行内元素也可以使用 Flex 布局。 .box{ display: inline-flex; } Webkit 内核的浏览器，必须加上-webkit前缀。 .box{ display: -webkit-flex; /* Safari */ display: flex; } 注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。 容器默认存在两根轴：水平的主轴 …" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans:700,400|Droid+Sans+Mono' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+		
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head>
+	
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="">Lucky Star</a></h1>
+		</div>
+	</header>
+	
+<div role="main" class="content clearfix">	
+	<article>
+		<div class="post wrapper">
+			<h1>Flex弹性布局</h1>
+			<p>1，2009年，W3C 提出了一种新的方案----Flex 布局，可以简便、完整、响应式地实现各种页面布局。flex布局又称为flex容器的父容器及其直接子容器（称为flex项）构成。</p>
+<p>2，Flex容器的主要特征是能够修改其子节点的宽度或高度，以便以不同屏幕尺寸以最佳方式填充可用空间。</p>
+<h2>简介</h2>
+<p>任何一个容器都可以指定为 Flex 布局。</p>
+<blockquote>
+<p><code>.box{
+  display: flex;
+}</code></p>
+</blockquote>
+<p>行内元素也可以使用 Flex 布局。</p>
+<blockquote>
+<p><code>.box{
+  display: inline-flex;
+}</code></p>
+</blockquote>
+<p>Webkit 内核的浏览器，必须加上<code>-webkit</code>前缀。</p>
+<blockquote>
+<p><code>.box{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}</code></p>
+</blockquote>
+<p>注意，设为 Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
+<p><img alt="img" src="data:image/png;base64,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"></p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。 项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。 </p>
+<h2>容器属性</h2>
+<ul>
+<li>
+<p><code>flex-direction</code>：属性决定主轴的方向（即项目的排列方向）。 </p>
+</li>
+<li>
+<p><code>flex-wrap</code>:默认情况下，项目都排在一条线（又称"轴线"）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。 </p>
+</li>
+<li>
+<p><code>flex-flow:</code>flex-flow<code>属性是</code>flex-direction<code>属性和</code>flex-wrap<code>属性的简写形式，默认值为</code>row nowrap`。</p>
+</li>
+<li>
+<p><code>justify-content</code>：定义了项目在主轴上的对齐方式。 </p>
+</li>
+<li>
+<p><code>align-items</code>：定义项目在交叉轴上如何对齐。 </p>
+</li>
+<li>
+<p><code>align-content</code>：定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。 </p>
+</li>
+</ul>
+<h4>flex-direction属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.box</span> <span class="err">{</span>
+  <span class="nl">flex-direction:</span> <span class="nf">row</span> <span class="err">|</span> <span class="no">row-reverse</span> <span class="err">|</span> <span class="no">column</span> <span class="err">|</span> <span class="no">column-reverse</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="nf">row</span><span class="err">（默认值）：主轴为水平方向，起点在左端。</span>
+<span class="nf">row-reverse</span><span class="err">：主轴为水平方向，起点在右端。</span>
+<span class="nf">column</span><span class="err">：主轴为垂直方向，起点在上沿。</span>
+<span class="nf">column-reverse</span><span class="err">：主轴为垂直方向，起点在下沿。</span>
+</pre></div>
+
+
+<h4>flex-wrap属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.box</span><span class="err">{</span>
+  <span class="nl">flex-wrap:</span> <span class="nf">nowrap</span> <span class="err">|</span> <span class="no">wrap</span> <span class="err">|</span> <span class="no">wrap-reverse</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="nf">nowrap</span><span class="err">（默认）：不换行。</span> 
+<span class="no">wrap</span><span class="err">：换行，第一行在上方。</span> 
+<span class="no">wrap-reverse</span><span class="err">：换行，第一行在下方。</span>
+</pre></div>
+
+
+<h4>flex-flow属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.box</span> <span class="err">{</span>
+  <span class="nl">flex-flow:</span> <span class="err">&lt;</span><span class="nf">flex-direction</span><span class="err">&gt;</span> <span class="err">||</span> <span class="err">&lt;</span><span class="no">flex-wrap</span><span class="err">&gt;</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h4>justify-content属性</h4>
+<div class="highlight"><pre><span></span>.<span class="nv">box</span> {
+  <span class="nv">justify</span><span class="o">-</span><span class="nv">content</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">between</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">around</span><span class="c1">;</span>
+}
+
+它可能取<span class="mi">5</span>个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。
+<span class="nv">flex</span><span class="o">-</span><span class="nv">start</span>（默认值）：左对齐
+<span class="nv">flex</span><span class="o">-</span><span class="k">end</span>：右对齐
+<span class="nv">center</span>： 居中
+<span class="nv">space</span><span class="o">-</span><span class="nv">between</span>：两端对齐，项目之间的间隔都相等。
+<span class="nv">space</span><span class="o">-</span><span class="nv">around</span>：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+</pre></div>
+
+
+<h4>align-items属性</h4>
+<div class="highlight"><pre><span></span>.<span class="nv">box</span> {
+  <span class="nv">align</span><span class="o">-</span><span class="nv">items</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">baseline</span> <span class="o">|</span> <span class="nv">stretch</span><span class="c1">;</span>
+}
+
+它可能取<span class="mi">5</span>个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
+<span class="nv">flex</span><span class="o">-</span><span class="nv">start</span>：交叉轴的起点对齐。
+<span class="nv">flex</span><span class="o">-</span><span class="k">end</span>：交叉轴的终点对齐。
+<span class="nv">center</span>：交叉轴的中点对齐。
+<span class="nv">baseline</span>: 项目的第一行文字的基线对齐。
+<span class="nv">stretch</span>（默认值）：如果项目未设置高度或设为<span class="nv">auto</span>，将占满整个容器的高度。
+</pre></div>
+
+
+<p>#### align-content属性</p>
+<div class="highlight"><pre><span></span>.<span class="nv">box</span> {
+  <span class="nv">align</span><span class="o">-</span><span class="nv">content</span>: <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">between</span> <span class="o">|</span> <span class="nv">space</span><span class="o">-</span><span class="nv">around</span> <span class="o">|</span> <span class="nv">stretch</span><span class="c1">;</span>
+}
+
+<span class="nv">flex</span><span class="o">-</span><span class="nv">start</span>：与交叉轴的起点对齐。
+<span class="nv">flex</span><span class="o">-</span><span class="k">end</span>：与交叉轴的终点对齐。
+<span class="nv">center</span>：与交叉轴的中点对齐。
+<span class="nv">space</span><span class="o">-</span><span class="nv">between</span>：与交叉轴两端对齐，轴线之间的间隔平均分布。
+<span class="nv">space</span><span class="o">-</span><span class="nv">around</span>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+<span class="nv">stretch</span>（默认值）：轴线占满整个交叉轴。
+</pre></div>
+
+
+<h2>项目属性</h2>
+<ul>
+<li><code>order</code>:定义项目的排列顺序。数值越小，排列越靠前，默认为0 </li>
+<li><code>flex-grow</code>:定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。 </li>
+<li><code>flex-shrink</code>：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。 </li>
+<li><code>flex-basis</code>：定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。 </li>
+<li><code>flex</code>：<code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。 </li>
+<li><code>align-self</code>：<code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。 </li>
+</ul>
+<h4>order属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.item</span> <span class="err">{</span>
+  <span class="nl">order:</span> <span class="err">&lt;</span><span class="nf">integer</span><span class="err">&gt;</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h4>flex-grow属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.item</span> <span class="err">{</span>
+  <span class="nl">flex-grow:</span> <span class="err">&lt;</span><span class="nf">number</span><span class="err">&gt;</span><span class="c">; /* default 0 */</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>注：如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。 </p>
+<h4>flex-shrink属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.item</span> <span class="err">{</span>
+  <span class="nl">flex-shrink:</span> <span class="err">&lt;</span><span class="nf">number</span><span class="err">&gt;</span><span class="c">; /* default 1 */</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>注：1，如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>​   2，负值对该属性无效。</p>
+<h4>flex-basis属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.item</span> <span class="err">{</span>
+  <span class="nl">flex-basis:</span> <span class="err">&lt;</span><span class="nf">length</span><span class="err">&gt;</span> <span class="err">|</span> <span class="no">auto</span><span class="c">; /* default auto */</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>注：它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。 </p>
+<h4>flex属性</h4>
+<div class="highlight"><pre><span></span><span class="na">.item</span> <span class="err">{</span>
+  <span class="nl">flex:</span> <span class="nf">none</span> <span class="err">|</span> <span class="p">[</span> <span class="err">&lt;&#39;</span><span class="no">flex-grow</span><span class="err">&#39;&gt;</span> <span class="err">&lt;&#39;</span><span class="no">flex-shrink</span><span class="err">&#39;&gt;?</span> <span class="err">||</span> <span class="err">&lt;&#39;</span><span class="no">flex-basis</span><span class="err">&#39;&gt;</span> <span class="p">]</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>注：1，该属性有两个快捷值：<code>auto</code> (<code>1 1 auto</code>) 和 none (<code>0 0 auto</code>)。</p>
+<p>​   2，建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h4>align-self属性</h4>
+<div class="highlight"><pre><span></span>.<span class="nv">item</span> {
+  <span class="nv">align</span><span class="o">-</span><span class="nv">self</span>: <span class="nv">auto</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="nv">start</span> <span class="o">|</span> <span class="nv">flex</span><span class="o">-</span><span class="k">end</span> <span class="o">|</span> <span class="nv">center</span> <span class="o">|</span> <span class="nv">baseline</span> <span class="o">|</span> <span class="nv">stretch</span><span class="c1">;</span>
+}
+</pre></div>
+
+
+<p>注：该属性可能取6个值，除了auto，其他都与align-items属性完全一致。 </p>
+<h2>实例解析</h2>
+<h4>HTML代码</h4>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;first-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;second-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;third-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fourth-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fifth-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sixth-face&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;column&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pip&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">first-face</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+  <span class="k">align-items</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">second-face</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="nt">css的选择器</span><span class="err">，</span><span class="nt">选择类pip的第二个元素</span>
+<span class="p">.</span><span class="nc">second-face</span> <span class="p">.</span><span class="nc">pip</span><span class="p">:</span><span class="nd">nth-of-type</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span> <span class="p">{</span>   
+  <span class="k">align-self</span><span class="p">:</span> <span class="kc">flex-end</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">third-face</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">third-face</span> <span class="p">.</span><span class="nc">pip</span><span class="p">:</span><span class="nd">nth-of-type</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span> <span class="p">{</span>
+  <span class="k">align-self</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">third-face</span> <span class="p">.</span><span class="nc">pip</span><span class="p">:</span><span class="nd">nth-of-type</span><span class="o">(</span><span class="nt">3</span><span class="o">)</span> <span class="p">{</span>
+  <span class="k">align-self</span><span class="p">:</span> <span class="kc">flex-end</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fourth-face</span><span class="o">,</span> <span class="p">.</span><span class="nc">sixth-face</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fourth-face</span> <span class="p">.</span><span class="nc">column</span><span class="o">,</span> <span class="p">.</span><span class="nc">sixth-face</span> <span class="p">.</span><span class="nc">column</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">flex-direction</span><span class="p">:</span> <span class="kc">column</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fifth-face</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fifth-face</span> <span class="p">.</span><span class="nc">column</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">flex-direction</span><span class="p">:</span> <span class="kc">column</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fifth-face</span> <span class="p">.</span><span class="nc">column</span><span class="p">:</span><span class="nd">nth-of-type</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span> <span class="p">{</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* OTHER STYLES */</span>
+
+<span class="o">*</span> <span class="p">{</span>
+  <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">align-items</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+  <span class="k">vertical-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+  <span class="k">flex-wrap</span><span class="p">:</span> <span class="kc">wrap</span><span class="p">;</span>
+  <span class="k">align-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+  <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Open Sans&#39;</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
+
+  <span class="k">background</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">top</span><span class="p">,</span> <span class="mh">#222</span><span class="p">,</span> <span class="mh">#333</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">[</span><span class="nt">class</span><span class="o">$=</span><span class="s2">&quot;face&quot;</span><span class="o">]</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#e7e7e7</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">104</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">104</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">object-fit</span><span class="p">:</span> <span class="kc">contain</span><span class="p">;</span>
+
+  <span class="k">box-shadow</span><span class="p">:</span>
+    <span class="kc">inset</span> <span class="mi">0</span> <span class="mi">5</span><span class="kt">px</span> <span class="kc">white</span><span class="p">,</span> 
+    <span class="kc">inset</span> <span class="mi">0</span> <span class="mi">-5</span><span class="kt">px</span> <span class="mh">#bbb</span><span class="p">,</span>
+    <span class="kc">inset</span> <span class="mi">5</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#d7d7d7</span><span class="p">,</span> 
+    <span class="kc">inset</span> <span class="mi">-5</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#d7d7d7</span><span class="p">;</span>
+
+  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">10</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">pip</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
+  <span class="k">box-shadow</span><span class="p">:</span> <span class="kc">inset</span> <span class="mi">0</span> <span class="mi">3</span><span class="kt">px</span> <span class="mh">#111</span><span class="p">,</span> <span class="kc">inset</span> <span class="mi">0</span> <span class="mi">-3</span><span class="kt">px</span> <span class="mh">#555</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4>效果</h4>
+<p><img alt="img" src="data:image/png;base64,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"></p>
+<p>文章转载自：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">阮一峰</a></p>
+
+			<a href="http://localhost:8000/" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">返回</a>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+<div class="meta wrapper">
+	<time datetime="2017-07-18T13:50:00+02:00" pubdate>周二 18 七月 2017</time>
+	<ul class="tag clearfix">
+		<li><a href="/category/ji-zhu.html">技术</a></li>
+		<li><a href="/tag/pelican.html">pelican</a></li>
+		<li><a href="/tag/publishing.html">publishing</a></li>
+	</ul>
+</div>	</article>	
+</div>
+	
+		
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+			<li><a href="/resume.html">个人简历</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<li><a href="#">You can add links in your config file</a></li>
+			<li><a href="#">Another social link</a></li>
+		</ul>
+	
+		<p role="contentinfo">		© 2015 潇潇
+<br>
+			<a href="http://luckyxiaoxiao.cn/">luckyxiaoxiao.cn</a></p>
+	</div>
+</footer>
+</body>
+</html>
